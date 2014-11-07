@@ -45,11 +45,11 @@ class ConsumerDecorator<V> implements FutureCallback<V> {
     }
 
     public static <V> FutureCallback<V> success(Consumer<V> callback) {
-        return new ConsumerDecorator<>(callback, null);
+        return new ConsumerDecorator<V>(callback, null);
     }
 
     public static <V> FutureCallback<V> failure(Consumer<Throwable> callback) {
-        return new ConsumerDecorator<>(null, callback);
+        return new ConsumerDecorator<V>(null, callback);
     }
 
 }

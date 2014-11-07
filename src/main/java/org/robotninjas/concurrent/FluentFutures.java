@@ -37,7 +37,7 @@ public class FluentFutures {
      * @return a new completed future
      */
     public static <Y> FluentFuture<Y> from(Y value) {
-        return new FluentDecorator<>(Futures.immediateFuture(value));
+        return new FluentDecorator<Y>(Futures.immediateFuture(value));
     }
 
     /**
@@ -48,7 +48,7 @@ public class FluentFutures {
      * @return a new exceptional future
      */
     public static <Y> FluentFuture<Y> from(Exception exception) {
-        return new FluentDecorator<>(Futures.<Y>immediateFailedFuture(exception));
+        return new FluentDecorator<Y>(Futures.<Y>immediateFailedFuture(exception));
     }
 
     /**
@@ -60,7 +60,7 @@ public class FluentFutures {
      * @return
      */
     public static <Y> FluentFuture<Y> from(Y value, Executor executor) {
-        return new FluentDecorator<>(Futures.immediateFuture(value), executor);
+        return new FluentDecorator<Y>(Futures.immediateFuture(value), executor);
     }
 
     /**
@@ -70,7 +70,7 @@ public class FluentFutures {
      * @return
      */
     public static <Y> FluentFuture<Y> from(ListenableFuture<Y> future) {
-        return new FluentDecorator<>(future);
+        return new FluentDecorator<Y>(future);
     }
 
     /**
@@ -81,7 +81,7 @@ public class FluentFutures {
      * @return
      */
     public static <Y> FluentFuture<Y> from(ListenableFuture<Y> future, Executor executor) {
-        return new FluentDecorator<>(future, executor);
+        return new FluentDecorator<Y>(future, executor);
     }
 
     /**
@@ -92,7 +92,7 @@ public class FluentFutures {
      */
     @SafeVarargs
     public static <Y> FluentFuture<List<Y>> from(ListenableFuture<Y>... futures) {
-        return new FluentDecorator<>(Futures.allAsList(Arrays.asList(futures)));
+        return new FluentDecorator<List<Y>>(Futures.allAsList(Arrays.asList(futures)));
     }
 
     /**
@@ -104,7 +104,7 @@ public class FluentFutures {
      */
     @SafeVarargs
     public static <Y> FluentFuture<List<Y>> from(Executor executor, ListenableFuture<Y>... futures) {
-        return new FluentDecorator<>(Futures.allAsList(Arrays.asList(futures)), executor);
+        return new FluentDecorator<List<Y>>(Futures.allAsList(Arrays.asList(futures)), executor);
     }
 
     /**
@@ -114,7 +114,7 @@ public class FluentFutures {
      * @return
      */
     public static <Y> FluentFuture<List<Y>> from(Iterable<? extends ListenableFuture<? extends Y>> futures) {
-        return new FluentDecorator<>(Futures.allAsList(futures));
+        return new FluentDecorator<List<Y>>(Futures.allAsList(futures));
     }
 
     /**
@@ -126,7 +126,7 @@ public class FluentFutures {
      */
     public static <Y> FluentFuture<List<Y>> from(Iterable<? extends ListenableFuture<? extends Y>> futures,
                                                  Executor executor) {
-        return new FluentDecorator<>(Futures.allAsList(futures), executor);
+        return new FluentDecorator<List<Y>>(Futures.allAsList(futures), executor);
     }
 
     /**

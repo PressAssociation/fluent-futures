@@ -40,32 +40,32 @@ class FluentDecorator<V> extends ForwardingListenableFuture.SimpleForwardingList
 
     @Override
     public <Y> FluentFuture<Y> transform(Function<? super V, ? extends Y> func) {
-        return new FluentDecorator<>(Futures.transform(this, func));
+        return new FluentDecorator<Y>(Futures.transform(this, func));
     }
 
     @Override
     public <Y> FluentFuture<Y> transform(Executor executor, Function<? super V, ? extends Y> func) {
-        return new FluentDecorator<>(Futures.transform(this, func, executor), this.executor);
+        return new FluentDecorator<Y>(Futures.transform(this, func, executor), this.executor);
     }
 
     @Override
     public <Y> FluentFuture<Y> transform(AsyncFunction<? super V, ? extends Y> func) {
-        return new FluentDecorator<>(Futures.transform(this, func));
+        return new FluentDecorator<Y>(Futures.transform(this, func));
     }
 
     @Override
     public <Y> FluentFuture<Y> transform(Executor executor, AsyncFunction<? super V, ? extends Y> func) {
-        return new FluentDecorator<>(Futures.transform(this, func, executor), this.executor);
+        return new FluentDecorator<Y>(Futures.transform(this, func, executor), this.executor);
     }
 
     @Override
     public FluentFuture<V> withFallback(FutureFallback<V> fallback) {
-        return new FluentDecorator<>(Futures.withFallback(this, fallback));
+        return new FluentDecorator<V>(Futures.withFallback(this, fallback));
     }
 
     @Override
     public FluentFuture<V> withFallback(Executor executor, FutureFallback<V> fallback) {
-        return new FluentDecorator<>(Futures.withFallback(this, fallback, executor), this.executor);
+        return new FluentDecorator<V>(Futures.withFallback(this, fallback, executor), this.executor);
     }
 
     @Override
@@ -102,7 +102,7 @@ class FluentDecorator<V> extends ForwardingListenableFuture.SimpleForwardingList
 
     @Override
     public <E extends Exception> FluentCheckedFuture<V, E> makeChecked(Function<Exception, E> func) {
-        return new CheckedDecorator<>(Futures.makeChecked(this, func));
+        return new CheckedDecorator<V, E>(Futures.makeChecked(this, func));
     }
 
     @Override
