@@ -113,7 +113,7 @@ public class FluentFutures {
      * @param <Y>
      * @return
      */
-    public static <Y> FluentFuture<List<Y>> from(Iterable<ListenableFuture<Y>> futures) {
+    public static <Y> FluentFuture<List<Y>> from(Iterable<? extends ListenableFuture<? extends Y>> futures) {
         return new FluentDecorator<>(Futures.allAsList(futures));
     }
 
@@ -124,7 +124,8 @@ public class FluentFutures {
      * @param <Y>
      * @return
      */
-    public static <Y> FluentFuture<List<Y>> from(Iterable<ListenableFuture<Y>> futures, Executor executor) {
+    public static <Y> FluentFuture<List<Y>> from(Iterable<? extends ListenableFuture<? extends Y>> futures,
+                                                 Executor executor) {
         return new FluentDecorator<>(Futures.allAsList(futures), executor);
     }
 
