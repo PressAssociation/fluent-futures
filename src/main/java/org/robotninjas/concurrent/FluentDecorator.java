@@ -39,22 +39,22 @@ class FluentDecorator<V> extends ForwardingListenableFuture.SimpleForwardingList
     }
 
     @Override
-    public <Y> FluentFuture<Y> transform(Function<V, Y> func) {
+    public <Y> FluentFuture<Y> transform(Function<? super V, ? extends Y> func) {
         return new FluentDecorator<>(Futures.transform(this, func));
     }
 
     @Override
-    public <Y> FluentFuture<Y> transform(Executor executor, Function<V, Y> func) {
+    public <Y> FluentFuture<Y> transform(Executor executor, Function<? super V, ? extends Y> func) {
         return new FluentDecorator<>(Futures.transform(this, func, executor), this.executor);
     }
 
     @Override
-    public <Y> FluentFuture<Y> transform(AsyncFunction<V, Y> func) {
+    public <Y> FluentFuture<Y> transform(AsyncFunction<? super V, ? extends Y> func) {
         return new FluentDecorator<>(Futures.transform(this, func));
     }
 
     @Override
-    public <Y> FluentFuture<Y> transform(Executor executor, AsyncFunction<V, Y> func) {
+    public <Y> FluentFuture<Y> transform(Executor executor, AsyncFunction<? super V, ? extends Y> func) {
         return new FluentDecorator<>(Futures.transform(this, func, executor), this.executor);
     }
 

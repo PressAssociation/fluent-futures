@@ -30,13 +30,13 @@ import java.util.concurrent.TimeoutException;
 
 public interface FluentFuture<V> extends ListenableFuture<V> {
 
-    <Y> FluentFuture<Y> transform(Function<V, Y> func);
+    <Y> FluentFuture<Y> transform(Function<? super V, ? extends Y> func);
 
-    <Y> FluentFuture<Y> transform(Executor executor, Function<V, Y> func);
+    <Y> FluentFuture<Y> transform(Executor executor, Function<? super V, ? extends Y> func);
 
-    <Y> FluentFuture<Y> transform(AsyncFunction<V, Y> func);
+    <Y> FluentFuture<Y> transform(AsyncFunction<? super V, ? extends Y> func);
 
-    <Y> FluentFuture<Y> transform(Executor executor, AsyncFunction<V, Y> func);
+    <Y> FluentFuture<Y> transform(Executor executor, AsyncFunction<? super V, ? extends Y> func);
 
     FluentFuture<V> withFallback(FutureFallback<V> fallback);
 
